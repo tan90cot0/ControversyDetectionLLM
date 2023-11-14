@@ -133,11 +133,11 @@ def few_shot(examples, test_article):
     prompt = "Classify the following text as either 'controversial' or 'non-controversial':\n"
 
     # Generate a few-shot prompt from examples
-    few_shot_prompt = prompt + "\n".join([f'"Article title: {title}, Number of edits: {edits}, Content: {content[:3000]}" is {label}.' for edits, content, title, label in examples])
+    few_shot_prompt = prompt + "\n".join([f'"Article title: {title}, Number of edits: {edits}, Content: {content[:1500]}" is {label}.' for edits, content, title, label in examples])
 
     # Complete the few-shot prompt with the input text for classification
     edits, content, title = test_article
-    full_prompt = few_shot_prompt + f'\nTherefore, "Article title: {title}, Number of edits: {str(edits)}, Content: {content[:3000]}" is'
+    full_prompt = few_shot_prompt + f'\nTherefore, "Article title: {title}, Number of edits: {str(edits)}, Content: {content[:1500]}" is'
 
     # Call the OpenAI API to get the model's completion
     global timer
@@ -220,7 +220,7 @@ def in_context_LLM(df):
     predictions = []
     acc = 0
     for i in tqdm(range(y_test.shape[0])):
-        topn_similar_articles = get_most_similar_articles(X_test[i], X_train, top_n=3)
+        topn_similar_articles = get_most_similar_articles(X_test[i], X_train, top_n=9)
         examples = [convert(*(art)) for art in topn_similar_articles]
         prediction = few_shot(examples, X_test[i])
         predictions.append(prediction)

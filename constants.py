@@ -1,4 +1,4 @@
-API_KEY = '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'
+API_KEY = 'YOUR_API_KEY'
 MODEL_CHOICE = 5
 # {   1: "Logistic Regression on Edit Counts", 
 #     2: "Naive Bayes'", 
