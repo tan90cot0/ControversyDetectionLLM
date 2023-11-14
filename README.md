@@ -1,1 +1,1 @@
-# ControveryDetectionLLM
+# ControversyDetectionLLM
